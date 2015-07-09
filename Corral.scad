@@ -1,21 +1,32 @@
 //Fences motherfucker
 
-FencePostWidth = 10;
-FencePostTaperHeight = 12;
-FencePostHeight = 50;
-FencePostThickness = 2.5;
-
-FencePostSpaceing = 5;
-
+fencePostWidth = 10;
+fencePostTaperHeight = 12;
+fencePostHeight = 50;
+fencePostThickness = 2.5;
+fencePostSpacing = 5;
 
 
-module fencePost(x,y,z, thickness){
-	linear_extrude(height = thickness, center = true, convexity = 10, twist = 0)
-	polygon(points = [[0,0], [x,0], [x,z-y], [x/2,z], [0,z-y]], paths = [[0,1,2,3,4]]);
+
+module fencePost(x,y,z, thickness, spacing){
+	cubeLength = x + spacing;
+	union(){
+		linear_extrude(height = thickness, center = true, convexity = 10, twist = 0)
+			translate([-x/2, 0, 0])
+			polygon(points = [[0,0], [x,0], [x,z-y], [x/2,z], [0,z-y]], paths = [[0,1,2,3,4]]);
+
+	
+		translate([-(x+spacing)/2, spacing, -thickness/2])
+			cube([cubeLength, 5, thickness], center = false);
+
+		translate([-(x+spacing)/2, z-y-(spacing*2), -thickness/2])
+			cube([cubeLength, 5, thickness], center = false);
+		
+	}
 }
 
 module fenceLine(spacing, length){
 	
 }
 
-fencePost(FencePostWidth, FencePostTaperHeight, FencePostHeight, FencePostThickness);
+fencePost(fencePostWidth, fencePostTaperHeight, fencePostHeight, fencePostThickness,fencePostSpacing);
