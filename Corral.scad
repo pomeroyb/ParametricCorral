@@ -6,7 +6,7 @@ fencePostHeight = 50;
 fencePostThickness = 2.5;
 fencePostSpacing = 5;
 
-
+corralLength = 15;
 
 module fencePost(x,y,z, thickness, spacing){
 	cubeLength = x + spacing;
@@ -25,8 +25,16 @@ module fencePost(x,y,z, thickness, spacing){
 	}
 }
 
-module fenceLine(spacing, length){
-	
+module fenceLine(spacing, postWidth, length){
+	numberOfPosts = floor(length/(spacing+postWidth));
+	echo(numberOfPosts);
+	for( i = [0 : 1 : numberOfPosts] ) {
+		echo(i);
+		translate([(spacing+postWidth)*i, 0, 0])
+		fencePost(fencePostWidth, fencePostTaperHeight, fencePostHeight, fencePostThickness,fencePostSpacing);
+	}
 }
 
-fencePost(fencePostWidth, fencePostTaperHeight, fencePostHeight, fencePostThickness,fencePostSpacing);
+
+
+fenceLine(fencePostSpacing, fencePostWidth, corralLength);
