@@ -28,9 +28,9 @@ module fencePost(x,y,z, thickness, spacing){
 module fenceLine(spacing, postWidth, length){
 	numberOfPosts = floor(length/(spacing+postWidth));
 	echo(numberOfPosts);
-	for( i = [0 : 1 : numberOfPosts] ) {
+	for( i = [1 : 1 : numberOfPosts] ) {
 		echo(i);
-		translate([(spacing+postWidth)*i, 0, 0])
+		translate([(spacing+postWidth)*(i-1), 0, 0])
 		fencePost(fencePostWidth, fencePostTaperHeight, fencePostHeight, fencePostThickness,fencePostSpacing);
 	}
 }
