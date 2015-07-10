@@ -1,22 +1,30 @@
-//Fences motherfucker
+//Keep your 3D prints corralled within a nice picket fence.
+//Input your printer's build size, and have a corral generated for you!
 
+//Written by Brandon Pomeroy at intentional3D
+
+
+
+// in mm
+corralLength = 280;
+
+//in mm
+corralWidth = 140;
+
+/* [Hidden] */
 fencePostWidth = 10;
 fencePostTaperHeight = 12;
 fencePostHeight = 50;
 fencePostThickness = 2.5;
 fencePostSpacing = 5;
 
-corralLength = 200;
-corralWidth = 180;
-
-/* [Hidden] */
-
 lengthNumberOfPosts = floor(corralLength/(fencePostSpacing+fencePostWidth));
 widthNumberOfPosts = floor(corralWidth/(fencePostSpacing+fencePostWidth));
 halfPostWidth = (fencePostWidth + fencePostSpacing)/2;
 
-echo(lengthNumberOfPosts);
-echo(widthNumberOfPosts);
+//echo(lengthNumberOfPosts);
+//echo(widthNumberOfPosts);
+
 
 
 module fencePost(x,y,z, thickness, spacing){
@@ -26,11 +34,11 @@ module fencePost(x,y,z, thickness, spacing){
 			translate([-x/2, 0, 0])
 			polygon(points = [[0,0], [x,0], [x,z-y], [x/2,z], [0,z-y]], paths = [[0,1,2,3,4]]);
 
-		translate([-(x+spacing)/2, spacing, -thickness/2])
-			cube([cubeLength, 5, thickness], center = false);
+		translate([-(x+spacing)/2, spacing, -thickness/4])
+			cube([cubeLength, 5, thickness/2], center = false);
 
-		translate([-(x+spacing)/2, z-y-(spacing*2), -thickness/2])
-			cube([cubeLength, 5, thickness], center = false);
+		translate([-(x+spacing)/2, z-y-(spacing*2), -thickness/4])
+			cube([cubeLength, 5, thickness/2], center = false);
 		
 	}
 }
