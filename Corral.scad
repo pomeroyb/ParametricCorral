@@ -3,12 +3,12 @@
 
 //Written by Brandon Pomeroy at intentional3D
 
+/* [Select Your Printer Bed Size] */
 
+// in mm. This should be slightly smaller than your max build length.
+corralLength = 140;
 
-// in mm
-corralLength = 280;
-
-//in mm
+//in mm. This should be sligthly smaller than your max build width
 corralWidth = 140;
 
 /* [Hidden] */
@@ -96,5 +96,7 @@ module corral(){
 	cornerPosts();
 	
 }
+
+
 
 corral();
